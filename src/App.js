@@ -1,30 +1,51 @@
 import React, { Component } from "react";
 //import logo from "./logo.svg";
 import "./App.css";
-import LoginForm from "./components/common/loginForm";
-import "bootstrap/dist/css/bootstrap.css";
-import SelectedIndicator from "./components/common/selectedIndicator";
+// import { getGenres } from "./services/fakeGenreService";
+import { getMovies } from "./services/fakeMovieService";
 
-const items = [
-  { id: 1, label: "Brown bag 1" },
-  { id: 2, label: "Brown bag 2" },
-  { id: 3, label: "Brown bag 3" },
-  { id: 4, label: "Brown bag 4" }
-];
 class App extends Component {
   // constructor(props) {
   //   super(props);
   // }
   render() {
+    const movies = getMovies();
+    const movieCount = movies.length;
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1>Vidly</h1>
-        </header>
-        <LoginForm />
-        <hr />
-        <SelectedIndicator items={items} />
-      </div>
+      <main className="container">
+        <h1>Vidly</h1>
+        <p>
+          Showing <span>{movieCount} </span> movies the the database.
+        </p>
+        <table className="table">
+          <thead>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Stock</th>
+            <th>Rate</th>
+          </thead>
+          <tbody>
+            {movies.map(x => (
+              <tr>
+                <td>{x.title}</td>
+                <td>{x.genre.name}</td>
+                <td>{x.numberInStock}</td>
+                <td>{x.dailyRentalRate}</td>
+                <td>
+                  <button
+                    aria-label="Delete"
+                    style={{ backgroundColor: "red", color: "white" }}
+                  >
+                    <i className="fa fa-trash" />
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </main>
     );
   }
 }

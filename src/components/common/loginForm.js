@@ -6,14 +6,15 @@ class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      account: { username: "", password: "" },
+      //account: { username: "", password: "" },
+      account: { password: "" },
       errors: {}
     };
   }
 
   schema = {
     username: Joi.string()
-      .required()
+      //.required()
       .label("Username"),
     password: Joi.string()
       .required()
@@ -82,11 +83,13 @@ class LoginForm extends Component {
               autofocus={""}
               error={errors.password}
             />
+            <label>Test Required:</label>
+            <input type="text" required={"required" && false} />
           </div>
 
           <button
             type="submit"
-            disabled={this.validate()}
+            // disabled={this.validate()}
             className="btn btn-primary"
           >
             Submit
