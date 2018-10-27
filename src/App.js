@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 //import logo from "./logo.svg";
 import "./App.css";
-import Movies from "./components/movies";
+//import Movies from "./components/movies";
+// import LoginForm from "./components/common/loginForm";
+import DemoForm from "./components/common/demoForm";
 
 class App extends Component {
   // constructor(props) {
@@ -12,10 +14,10 @@ class App extends Component {
 
   render() {
     return (
-      <main className="container">
-        <h1>Vidly</h1>
-        <Movies />
-      </main>
+      <div className="container">
+        <h1>Demo Form</h1>
+        <DemoForm />
+      </div>
     );
   }
 }

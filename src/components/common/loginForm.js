@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import Joi from "joi-browser";
+// import Symbol from "es6-symbol";
+// import Map from "core-js/fn/map";
+// import Promise from "core-js/fn/promise";
 import EpssInput from "./EpsonInput";
 
 class LoginForm extends Component {
@@ -7,7 +10,7 @@ class LoginForm extends Component {
     super(props);
     this.state = {
       //account: { username: "", password: "" },
-      account: { password: "" },
+      account: { password: "", dateToday: {} },
       errors: {}
     };
   }
@@ -19,7 +22,10 @@ class LoginForm extends Component {
     password: Joi.string()
       .required()
       .min(5)
-      .label("Password")
+      .label("Password"),
+    dateToday: Joi.date()
+      .required()
+      .max("now")
   };
 
   validate = () => {
@@ -83,6 +89,16 @@ class LoginForm extends Component {
               autofocus={""}
               error={errors.password}
             />
+            <EpssInput
+              label="Today's Date"
+              onChange={this.handleChange}
+              name="dateToday"
+              inputType={"date"}
+              value={account.dateToday}
+              autofocus={""}
+              error={errors.dateToday}
+            />
+
             <label>Test Required:</label>
             <input type="text" required={"required" && false} />
           </div>
